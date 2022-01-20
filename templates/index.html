@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Inventory listing</h1>
+    <a href="add">Add new item</a> <a href="export">Export database as CSV</a><br /><br />
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Qty in stock</th>
+            <th>Qty on order</th>
+            <th>UPC</th>
+            <th>SKU</th>
+            <th></th>
+            <th></th>
+        </tr>
+    {% for item in items %}
+        <tr>
+            <td>{{ item['name'] }}</td>
+            <td>{{ item['price'] }}</td>
+            <td>{{ item['quantity_in_stock'] }}</td>
+            <td>{{ item['quantity_on_order'] }}</td>
+            <td>{{ item['upc'] }}</td>
+            <td>{{ item['sku'] }}</td>
+            <td><a href="edit?id={{ item['id'] }}">Edit</a></td>
+            <td><a href="delete?id={{ item['id'] }}">Delete</a></td>
+        </tr>
+    {% endfor %}
+    </table>
+
+{% endblock %}
